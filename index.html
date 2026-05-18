@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김미주 | AI 기획 · 데이터 사이언스</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans KR', sans-serif; font-weight: 400; color: #1a1a1a; background: #fff; line-height: 1.7; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: #fff; border-bottom: 1px solid #e8e8e8;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 60px; height: 64px;
+}
+.nav-logo { font-family: 'Noto Serif KR', serif; font-size: 17px; font-weight: 700; color: #1a1a1a; }
+.nav-logo span { color: #2563eb; }
+.nav-links { display: flex; gap: 36px; }
+.nav-links a { font-size: 13px; color: #666; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: #2563eb; }
+
+.hero {
+  max-width: 1100px; margin: 0 auto;
+  padding: 130px 60px 80px;
+  display: grid; grid-template-columns: 1fr 300px; gap: 80px; align-items: start;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #eff6ff; color: #2563eb;
+  font-size: 12px; font-weight: 500;
+  padding: 6px 14px; border-radius: 100px; margin-bottom: 24px;
+}
+.hero-badge::before {
+  content: ''; width: 6px; height: 6px;
+  background: #2563eb; border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero-name { font-family: 'Noto Serif KR', serif; font-size: 52px; font-weight: 700; line-height: 1.15; letter-spacing: -0.03em; color: #0f172a; margin-bottom: 6px; }
+.hero-name-en { font-size: 15px; font-weight: 300; color: #94a3b8; letter-spacing: 0.04em; margin-bottom: 22px; }
+.hero-tagline { font-size: 15px; color: #475569; line-height: 1.85; margin-bottom: 32px; }
+.hero-tagline strong { color: #1a1a1a; font-weight: 600; }
+.hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+.chip { font-size: 12px; font-weight: 500; padding: 5px 13px; border-radius: 4px; background: #f1f5f9; color: #475569; }
+.chip.blue { background: #eff6ff; color: #2563eb; }
+.hero-stats { display: flex; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+.stat { flex: 1; padding: 18px 0; text-align: center; border-right: 1px solid #e2e8f0; }
+.stat:last-child { border-right: none; }
+.stat-num { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 700; color: #2563eb; line-height: 1; margin-bottom: 4px; }
+.stat-label { font-size: 10px; color: #94a3b8; }
+
+.hero-profile { display: flex; flex-direction: column; gap: 14px; }
+.profile-img-box {
+  width: 100%; aspect-ratio: 3/4; border-radius: 16px; overflow: hidden;
+  background: linear-gradient(135deg, #dbeafe, #e0f2fe, #f0fdf4);
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid #e2e8f0;
+}
+.profile-img-box img { width: 100%; height: 100%; object-fit: cover; }
+.profile-ph { text-align: center; color: #93c5fd; }
+.profile-ph-icon { font-size: 64px; margin-bottom: 6px; }
+.profile-ph-text { font-size: 11px; color: #93c5fd; }
+.profile-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; }
+.profile-row { display: flex; justify-content: space-between; font-size: 12px; padding: 7px 0; border-bottom: 1px solid #f1f5f9; color: #475569; }
+.profile-row:last-child { border-bottom: none; }
+.profile-row strong { color: #1a1a1a; font-weight: 600; }
+
+hr.divider { border: none; border-top: 1px solid #e8e8e8; margin: 0 60px; }
+
+.section { max-width: 1100px; margin: 0 auto; padding: 72px 60px; }
+.section-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 44px; padding-bottom: 18px; border-bottom: 2px solid #0f172a; }
+.section-num { font-family: 'Noto Serif KR', serif; font-size: 13px; color: #2563eb; font-weight: 600; }
+.section-title { font-family: 'Noto Serif KR', serif; font-size: 24px; font-weight: 700; color: #0f172a; letter-spacing: -0.02em; }
+.section-sub { font-size: 13px; color: #94a3b8; margin-left: auto; }
+
+.project-card { border: 1px solid #e2e8f0; border-radius: 12px; padding: 32px 36px; margin-bottom: 14px; transition: box-shadow 0.2s, border-color 0.2s; }
+.project-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); border-color: #bfdbfe; }
+.project-card.featured { border-color: #2563eb; background: #fafcff; }
+.project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+.project-index { font-size: 11px; color: #94a3b8; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; font-weight: 500; }
+.project-title { font-family: 'Noto Serif KR', serif; font-size: 19px; font-weight: 700; color: #0f172a; letter-spacing: -0.02em; margin-bottom: 3px; line-height: 1.35; }
+.project-org { font-size: 12px; color: #2563eb; font-weight: 500; }
+.pbadge { font-size: 11px; font-weight: 600; padding: 4px 11px; border-radius: 100px; white-space: nowrap; margin-left: 12px; margin-top: 2px; }
+.pb-blue { background: #eff6ff; color: #2563eb; }
+.pb-green { background: #f0fdf4; color: #16a34a; }
+.pb-orange { background: #fff7ed; color: #ea580c; }
+.pb-purple { background: #faf5ff; color: #7c3aed; }
+.project-desc { font-size: 14px; color: #475569; line-height: 1.85; margin-bottom: 20px; }
+.project-desc strong { color: #1a1a1a; font-weight: 600; }
+.project-metrics { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+.mbox { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 18px; text-align: center; min-width: 80px; }
+.mval { font-family: 'Noto Serif KR', serif; font-size: 20px; font-weight: 700; color: #2563eb; line-height: 1; margin-bottom: 2px; }
+.mlabel { font-size: 10px; color: #94a3b8; }
+.stacks { display: flex; flex-wrap: wrap; gap: 6px; }
+.stk { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 4px; background: #f1f5f9; color: #64748b; }
+
+.skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.skill-card { border: 1px solid #e2e8f0; border-radius: 12px; padding: 26px 28px; }
+.skill-card-title { font-size: 11px; font-weight: 700; color: #2563eb; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid #e2e8f0; }
+.skill-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f8fafc; font-size: 13px; color: #374151; }
+.skill-item:last-child { border-bottom: none; }
+.skill-bar { width: 68px; height: 3px; background: #e2e8f0; border-radius: 2px; overflow: hidden; }
+.skill-fill { height: 100%; background: linear-gradient(90deg, #2563eb, #60a5fa); border-radius: 2px; }
+
+.research-list { display: flex; flex-direction: column; }
+.research-item { display: grid; grid-template-columns: 60px 1fr auto; gap: 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid #f1f5f9; }
+.research-item:first-child { padding-top: 0; }
+.research-year { font-size: 12px; color: #94a3b8; font-weight: 500; }
+.research-title { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 2px; line-height: 1.5; }
+.research-venue { font-size: 12px; color: #94a3b8; }
+.rbadge { font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; white-space: nowrap; letter-spacing: 0.04em; }
+
+.contact-wrap { background: #0f172a; padding: 80px 60px; text-align: center; }
+.contact-title { font-family: 'Noto Serif KR', serif; font-size: 34px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.contact-sub { font-size: 14px; color: #94a3b8; margin-bottom: 36px; }
+.contact-btns { display: flex; justify-content: center; gap: 12px; }
+.btn { display: inline-block; font-size: 13px; font-weight: 600; padding: 13px 30px; border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+.btn-p { background: #2563eb; color: #fff; }
+.btn-p:hover { background: #1d4ed8; }
+.btn-s { background: rgba(255,255,255,0.07); color: #e2e8f0; border: 1px solid rgba(255,255,255,0.12); }
+.btn-s:hover { background: rgba(255,255,255,0.13); }
+
+footer { background: #0f172a; border-top: 1px solid rgba(255,255,255,0.06); padding: 18px 60px; display: flex; justify-content: space-between; font-size: 12px; color: #475569; }
+
+@media(max-width:800px){
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 100px 24px 56px; gap: 36px; }
+  .hero-profile { order: -1; }
+  .profile-img-box { aspect-ratio: 1; }
+  .section { padding: 56px 24px; }
+  hr.divider { margin: 0 24px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .research-item { grid-template-columns: 1fr; gap: 6px; }
+  .contact-wrap { padding: 60px 24px; }
+  footer { flex-direction: column; gap: 4px; padding: 16px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">김<span>미주</span></div>
+  <div class="nav-links">
+    <a href="#projects">프로젝트</a>
+    <a href="#skills">기술 스택</a>
+    <a href="#research">연구 · 수상</a>
+    <a href="#contact">연락처</a>
+  </div>
+</nav>
+
+<div style="max-width:1100px;margin:0 auto;">
+<div class="hero">
+  <div>
+    <div class="hero-badge">AI 기획 · 데이터 사이언스</div>
+    <h1 class="hero-name">김미주</h1>
+    <p class="hero-name-en">Miju Kim &nbsp;·&nbsp; AI Planner &amp; Data Scientist</p>
+    <p class="hero-tagline">
+      <strong>AI가 실제로 쓰이도록 설계하는 기획자입니다.</strong><br>
+      데이터 파이프라인부터 이해관계자 협의까지,<br>
+      근거 없이 다음 단계로 넘어가지 않습니다.
+    </p>
+    <div class="hero-chips">
+      <span class="chip blue">AX 기획</span>
+      <span class="chip blue">데이터 분석</span>
+      <span class="chip">Python · R · SQL</span>
+      <span class="chip">AWS</span>
+      <span class="chip">GAM · Cox Model</span>
+      <span class="chip">SQLD · ADSP</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">16.5억</div><div class="stat-label">AI 사업 기획</div></div>
+      <div class="stat"><div class="stat-num">1,693</div><div class="stat-label">설문 분석</div></div>
+      <div class="stat"><div class="stat-num">98%</div><div class="stat-label">예측 정확도</div></div>
+      <div class="stat"><div class="stat-num">200%</div><div class="stat-label">정책 효과</div></div>
+    </div>
+  </div>
+
+  <div class="hero-profile">
+    <div class="profile-img-box">
+      <!-- 사진 있으면: <img src="profile.jpg" alt="김미주"> -->
+      <div class="profile-ph">
+        <div class="profile-ph-icon">🙂</div>
+        <div class="profile-ph-text">profile.jpg 교체</div>
+      </div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-row"><span>소속</span><strong>부산대 EduTech Center</strong></div>
+      <div class="profile-row"><span>학위</span><strong>데이터 사이언스 석사</strong></div>
+      <div class="profile-row"><span>자격증</span><strong>SQLD · ADSP</strong></div>
+      <div class="profile-row"><span>관심 직무</span><strong>AX 기획 · AI PM</strong></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<hr class="divider">
+
+<div class="section" id="projects">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">주요 프로젝트</h2>
+    <span class="section-sub">2023 — 현재</span>
+  </div>
+
+  <div class="project-card featured">
+    <div class="project-top">
+      <div>
+        <div class="project-index">01 · 진행 중</div>
+        <h3 class="project-title">LG U+ EXAONE 기반 AI 캠퍼스 사업 기획</h3>
+        <p class="project-org">부산대학교 EduTech Center · AI 전문 연구원 (PM) · 2025.03 — 현재</p>
+      </div>
+      <span class="pbadge pb-blue">진행 중</span>
+    </div>
+    <p class="project-desc">총 <strong>16.5억 원</strong> 규모 AI 캠퍼스 사업에서 AI 미팅룸·인터뷰 스튜디오·CaaS 플랫폼 등 아이템 구성 담당. 기획서 작성 전 견적서를 직접 검토해 서버 스펙 적합성과 예산 타당성을 확인하고, 정보화본부·기획처 등 다부서와 협의하며 8월 예산 집행 라인 및 9월 개발 로드맵을 단계별로 수립 중.</p>
+    <div class="project-metrics">
+      <div class="mbox"><div class="mval">16.5억</div><div class="mlabel">사업 규모</div></div>
+      <div class="mbox"><div class="mval">5종</div><div class="mlabel">기획 아이템</div></div>
+      <div class="mbox"><div class="mval">3+</div><div class="mlabel">협업 부서</div></div>
+    </div>
+    <div class="stacks">
+      <span class="stk">LG EXAONE</span><span class="stk">On-Premise</span><span class="stk">STT</span><span class="stk">Sovereign AI</span><span class="stk">사업 기획 PM</span>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-top">
+      <div>
+        <div class="project-index">02 · 진행 중</div>
+        <h3 class="project-title">Google for Education 파트너십 운영 PM</h3>
+        <p class="project-org">부산대학교 EduTech Center · 2025.03 — 현재</p>
+      </div>
+      <span class="pbadge pb-green">파트너십 추진 중</span>
+    </div>
+    <p class="project-desc">부산대 최초 Google for Education 파트너십 추진. Gemini Academy 커리큘럼 설계를 위해 <strong>1,693명 사전 설문</strong>을 직접 기획·분석. AI 사용 빈도(4.56점) 대비 리터러시 자가평가(3.21점) 간 <strong>1.35점 간극</strong>을 확인하고, 구글과의 미팅에서 프롬프트 심화 교육을 첫 번째 모듈로 배치할 것을 데이터 근거로 제안.</p>
+    <div class="project-metrics">
+      <div class="mbox"><div class="mval">1,693</div><div class="mlabel">설문 응답자</div></div>
+      <div class="mbox"><div class="mval">1.35점</div><div class="mlabel">리터러시 간극</div></div>
+      <div class="mbox"><div class="mval">96.7%</div><div class="mlabel">Gemini 경험률</div></div>
+    </div>
+    <div class="stacks">
+      <span class="stk">Gemini</span><span class="stk">NotebookLM</span><span class="stk">Google Workspace</span><span class="stk">커리큘럼 설계</span><span class="stk">데이터 분석</span>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-top">
+      <div>
+        <div class="project-index">03 · 완료</div>
+        <h3 class="project-title">뇌병변 장애인 실시간 건강모니터링 앱 「기대해」</h3>
+        <p class="project-org">부산뇌병변복지관 협력 · 데이터 엔지니어</p>
+      </div>
+      <span class="pbadge pb-purple">AWS 구축 완료</span>
+    </div>
+    <p class="project-desc">뇌병변 장애인 <strong>40명</strong> 대상 실시간 건강 모니터링 시스템. ECG·체온·활동량 데이터를 기상 데이터와 시계열 병합, AWS 기반 실시간 스트림 파이프라인 설계. 패치형 센서 이탈 문제 해결을 위해 <strong>Garmin 본사에 직접 방문·협업 제안</strong>, 수집 안정성 <strong>60% → 90%</strong> 개선.</p>
+    <div class="project-metrics">
+      <div class="mbox"><div class="mval">60→90%</div><div class="mlabel">수집 안정성</div></div>
+      <div class="mbox"><div class="mval">40명</div><div class="mlabel">실 적용 대상</div></div>
+      <div class="mbox"><div class="mval">1분</div><div class="mlabel">갱신 주기</div></div>
+    </div>
+    <div class="stacks">
+      <span class="stk">AWS</span><span class="stk">ECG 신호처리</span><span class="stk">비지도 클러스터링</span><span class="stk">Garmin API</span><span class="stk">Python</span>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-top">
+      <div>
+        <div class="project-index">04 · 완료 · 정책 채택</div>
+        <h3 class="project-title">부산시 소지역 건강격차 해소사업 분석</h3>
+        <p class="project-org">의학연구원 · 데이터 분석가</p>
+      </div>
+      <span class="pbadge pb-green">공식 가이드라인 채택</span>
+    </div>
+    <p class="project-desc">중재·대조 지역 <strong>1,703명 전수조사</strong> 기반 패널 DB 구축. DID 분석으로 대조지역 대비 <strong>200% 이상</strong> 건강 개선 효과 증명, A/B 테스트로 프로그램별 효과 검증. Python 전처리 자동화 파이프라인이 이듬해 사업 공식 가이드라인으로 채택됨.</p>
+    <div class="project-metrics">
+      <div class="mbox"><div class="mval">200%+</div><div class="mlabel">개선 효과</div></div>
+      <div class="mbox"><div class="mval">1,703명</div><div class="mlabel">전수조사</div></div>
+    </div>
+    <div class="stacks">
+      <span class="stk">DID 분석</span><span class="stk">A/B Test</span><span class="stk">Python</span><span class="stk">SPSS</span><span class="stk">정책 채택</span>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-top">
+      <div>
+        <div class="project-index">05 · 완료 · 환경부 채택</div>
+        <h3 class="project-title">초미세먼지 예측 GAM 앙상블 모델</h3>
+        <p class="project-org">부산대학교 석사 연구 · 환경부 기후변화 대응 환경보건센터</p>
+      </div>
+      <span class="pbadge pb-orange">환경부 공식 채택</span>
+    </div>
+    <p class="project-desc">Google Earth Engine 위성 데이터와 국민건강보험공단 코호트(<strong>30만 명</strong>) 병합. 결측 30%를 시공간 역추적 알고리즘으로 복원, GAM 앙상블로 예측 정확도 <strong>98%</strong> 달성. 환경부 공식 예측 모델 채택, APCN 국제신장학회 <strong>1저자 발표</strong>.</p>
+    <div class="project-metrics">
+      <div class="mbox"><div class="mval">98%</div><div class="mlabel">예측 정확도</div></div>
+      <div class="mbox"><div class="mval">30만명</div><div class="mlabel">코호트 규모</div></div>
+      <div class="mbox"><div class="mval">1저자</div><div class="mlabel">국제학회</div></div>
+    </div>
+    <div class="stacks">
+      <span class="stk">Google Earth Engine</span><span class="stk">GAM 앙상블</span><span class="stk">R</span><span class="stk">QGIS</span><span class="stk">Time-varying Cox</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section" id="skills">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">기술 스택</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-title">Programming</div>
+      <div class="skill-item">Python<div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+      <div class="skill-item">R<div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+      <div class="skill-item">SQL<div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+      <div class="skill-item">SAS<div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">분석 방법론</div>
+      <div class="skill-item">GAM · Cox Model<div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+      <div class="skill-item">DID · A/B Test<div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+      <div class="skill-item">PSM · 생존분석<div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+      <div class="skill-item">클러스터링<div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Platform & AI Tools</div>
+      <div class="skill-item">AWS<div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+      <div class="skill-item">Google Earth Engine<div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+      <div class="skill-item">Gemini · Claude<div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+      <div class="skill-item">QGIS · Tableau<div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section" id="research">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">연구 · 수상 · 자격</h2>
+  </div>
+  <div class="research-list">
+    <div class="research-item">
+      <div class="research-year">2025</div>
+      <div><div class="research-title">초미세먼지(PM2.5) 노출에 따른 만성 신장질환자의 급성 신손상 발생 위험</div><div class="research-venue">APCN 아시아태평양신장학회 · 1저자 발표</div></div>
+      <span class="rbadge pb-blue">1저자</span>
+    </div>
+    <div class="research-item">
+      <div class="research-year">2025</div>
+      <div><div class="research-title">GAM 앙상블 기반 초미세먼지 예측 모델 — 환경부 공식 채택</div><div class="research-venue">산학캡스톤디자인 장려상 · 환경부 기후변화 대응 환경보건센터</div></div>
+      <span class="rbadge pb-orange">환경부 채택</span>
+    </div>
+    <div class="research-item">
+      <div class="research-year">2024</div>
+      <div><div class="research-title">부산시 응급의료 취약지수 분석 — 부산시 보건정책 기초자료 채택</div><div class="research-venue">부산시 보건정책 공식 채택</div></div>
+      <span class="rbadge pb-green">정책 채택</span>
+    </div>
+    <div class="research-item">
+      <div class="research-year">2024</div>
+      <div><div class="research-title">BCI 기반 뇌파 신호처리 — SNR 128% 개선, 반응속도 0.3초 달성</div><div class="research-venue">뭐든지 해봐 공모전 우수상</div></div>
+      <span class="rbadge pb-purple">우수상</span>
+    </div>
+    <div class="research-item">
+      <div class="research-year">2023</div>
+      <div><div class="research-title">서울시 식습관·비만율 인과 분석 — Spatial Lag Model, Fixed Effect Panel</div><div class="research-venue">서울시 빅데이터 공모전 · 최종 1위</div></div>
+      <span class="rbadge pb-blue">1위</span>
+    </div>
+    <div class="research-item">
+      <div class="research-year">자격</div>
+      <div><div class="research-title">SQLD (SQL 개발자) · ADSP (데이터 분석 준전문가)</div><div class="research-venue">한국데이터산업진흥원</div></div>
+      <span class="rbadge pb-green">보유</span>
+    </div>
+  </div>
+</div>
+
+<div class="contact-wrap" id="contact">
+  <h2 class="contact-title">함께 일해요.</h2>
+  <p class="contact-sub">AI 기획 · 데이터 사이언스 · PM 관련 문의를 환영합니다.</p>
+  <div class="contact-btns">
+    <a class="btn btn-p" href="mailto:your@email.com">이메일 보내기</a>
+    <a class="btn btn-s" href="https://github.com/yourid" target="_blank">GitHub</a>
+    <a class="btn btn-s" href="#">LinkedIn</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 김미주 · AI Planner &amp; Data Scientist</span>
+  <span>Pusan National University · EduTech Center</span>
+</footer>
+
+</body>
+</html>
