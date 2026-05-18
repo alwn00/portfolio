@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김미주 | AI 기획 · 데이터 사이언스 포트폴리오</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;font-weight:400;color:#1a1a1a;background:#fff;line-height:1.75}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;padding:0 56px;height:60px}
+.nav-logo{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:#0f172a}
+.nav-logo span{color:#2563eb}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:12px;color:#64748b;text-decoration:none;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#2563eb}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 56px}
+
+/* HERO */
+.hero{padding:96px 0 72px;display:grid;grid-template-columns:1fr 250px;gap:64px;align-items:start}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:#eff6ff;color:#2563eb;font-size:11px;font-weight:600;padding:5px 14px;border-radius:100px;margin-bottom:20px}
+.hero-badge::before{content:'';width:6px;height:6px;background:#2563eb;border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero-name{font-family:'Noto Serif KR',serif;font-size:46px;font-weight:700;line-height:1.1;letter-spacing:-.03em;color:#0f172a;margin-bottom:4px}
+.hero-en{font-size:13px;font-weight:300;color:#94a3b8;letter-spacing:.06em;margin-bottom:6px}
+.hero-quote{font-size:15px;color:#2563eb;font-weight:600;margin-bottom:18px;line-height:1.6;font-style:italic}
+.hero-desc{font-size:13px;color:#475569;line-height:1.9;margin-bottom:28px}
+.hero-desc strong{color:#1a1a1a;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px}
+.chip{font-size:11px;font-weight:500;padding:4px 11px;border-radius:4px;background:#f1f5f9;color:#475569}
+.chip.hi{background:#eff6ff;color:#2563eb}
+.stats-row{display:flex;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden}
+.stt{flex:1;padding:14px 0;text-align:center;border-right:1px solid #e2e8f0}
+.stt:last-child{border-right:none}
+.sn{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:#2563eb;line-height:1;margin-bottom:3px}
+.sl{font-size:10px;color:#94a3b8}
+
+.profile-col{display:flex;flex-direction:column;gap:12px}
+.prof-img{width:100%;aspect-ratio:3/4;border-radius:14px;overflow:hidden;border:1px solid #e2e8f0;background:#f8fafc;display:flex;align-items:center;justify-content:center}
+.prof-img img{width:100%;height:100%;object-fit:cover;object-position:top}
+.prof-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px}
+.prow{display:flex;justify-content:space-between;font-size:11px;padding:5px 0;border-bottom:1px solid #f1f5f9;color:#475569}
+.prow:last-child{border-bottom:none}
+.prow strong{color:#1a1a1a;font-weight:600}
+
+hr.div{border:none;border-top:1px solid #e2e8f0}
+
+.sec{padding:60px 0}
+.sec-hd{display:flex;align-items:baseline;gap:12px;margin-bottom:36px;padding-bottom:14px;border-bottom:2px solid #0f172a}
+.sec-num{font-family:'Noto Serif KR',serif;font-size:12px;color:#2563eb;font-weight:700}
+.sec-ttl{font-family:'Noto Serif KR',serif;font-size:21px;font-weight:700;color:#0f172a;letter-spacing:-.02em}
+.sec-sub{font-size:12px;color:#94a3b8;margin-left:auto}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:'';position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:#e2e8f0}
+.tl-item{position:relative;margin-bottom:32px}
+.tl-item:last-child{margin-bottom:0}
+.tl-dot{position:absolute;left:-26px;top:4px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #cbd5e1;z-index:1}
+.tl-dot.on{background:#2563eb;border-color:#2563eb}
+.tl-period{font-size:11px;color:#2563eb;font-weight:600;letter-spacing:.03em;margin-bottom:3px}
+.tl-title{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:#0f172a;margin-bottom:2px}
+.tl-org{font-size:11px;color:#64748b;margin-bottom:7px}
+.tl-desc{font-size:13px;color:#475569;line-height:1.8}
+.tl-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.tl-tag{font-size:10px;padding:2px 8px;border-radius:3px;background:#f1f5f9;color:#64748b;font-weight:500}
+
+/* PROJECT CARDS */
+.proj-card{border:1px solid #e2e8f0;border-radius:12px;padding:26px 30px;margin-bottom:14px;transition:box-shadow .2s,border-color .2s}
+.proj-card:hover{box-shadow:0 4px 18px rgba(0,0,0,.06);border-color:#bfdbfe}
+.proj-card.feat{border-color:#2563eb;background:#fafcff}
+.proj-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.proj-idx{font-size:10px;color:#94a3b8;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px;font-weight:500}
+.proj-ttl{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:#0f172a;letter-spacing:-.02em;line-height:1.35;margin-bottom:2px}
+.proj-org{font-size:11px;color:#2563eb;font-weight:500}
+.pbadge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap;margin-left:10px}
+.pb-bl{background:#eff6ff;color:#2563eb}
+.pb-gn{background:#f0fdf4;color:#16a34a}
+.pb-or{background:#fff7ed;color:#ea580c}
+.pb-pu{background:#faf5ff;color:#7c3aed}
+.pb-gy{background:#f1f5f9;color:#475569}
+
+.proj-sum{font-size:13px;color:#475569;line-height:1.85;margin-bottom:14px}
+.proj-sum strong{color:#1a1a1a;font-weight:600}
+
+/* 토글 상세 */
+.proj-detail{max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .3s;opacity:0}
+.proj-detail.open{max-height:3000px;opacity:1;margin-top:14px}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.dbox{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px 16px}
+.dbox-ttl{font-size:10px;font-weight:700;color:#2563eb;letter-spacing:.08em;text-transform:uppercase;margin-bottom:9px}
+.dbox ul{list-style:none}
+.dbox li{font-size:12px;color:#475569;padding:3px 0;border-bottom:1px solid #f1f5f9;display:flex;align-items:flex-start;gap:5px;line-height:1.65}
+.dbox li:last-child{border-bottom:none}
+.dbox li::before{content:'→';color:#2563eb;font-size:10px;margin-top:3px;flex-shrink:0}
+
+/* 토스 연결 박스 */
+.toss-box{background:#0f172a;border-radius:8px;padding:14px 18px;margin-bottom:14px}
+.toss-box-ttl{font-size:10px;font-weight:700;color:#60a5fa;letter-spacing:.06em;margin-bottom:6px}
+.toss-box p{font-size:12px;color:#cbd5e1;line-height:1.7}
+.toss-box strong{color:#fff}
+
+.metrics-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.mbox{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:9px 14px;text-align:center;min-width:72px}
+.mv{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:#2563eb;line-height:1;margin-bottom:2px}
+.ml{font-size:10px;color:#94a3b8}
+
+.stacks{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.stk{font-size:10px;font-weight:500;padding:2px 8px;border-radius:3px;background:#f1f5f9;color:#64748b}
+
+.toggle-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#2563eb;background:none;border:1px solid #bfdbfe;border-radius:6px;padding:5px 12px;cursor:pointer;transition:all .2s;margin-top:10px}
+.toggle-btn:hover{background:#eff6ff}
+.arr{display:inline-block;transition:transform .3s}
+.toggle-btn.open .arr{transform:rotate(180deg)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sk-card{border:1px solid #e2e8f0;border-radius:10px;padding:20px 22px}
+.sk-ttl{font-size:10px;font-weight:700;color:#2563eb;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid #e2e8f0}
+.sk-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f8fafc;font-size:12px;color:#374151}
+.sk-item:last-child{border-bottom:none}
+.sk-note{font-size:10px;color:#94a3b8;margin-top:1px}
+.sk-bar{width:60px;height:3px;background:#e2e8f0;border-radius:2px;overflow:hidden}
+.sk-fill{height:100%;background:linear-gradient(90deg,#2563eb,#60a5fa);border-radius:2px}
+
+/* RESEARCH */
+.res-list{display:flex;flex-direction:column}
+.res-item{display:grid;grid-template-columns:58px 1fr auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid #f1f5f9}
+.res-item:first-child{padding-top:0}
+.ry{font-size:11px;color:#94a3b8;font-weight:500}
+.rt{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:2px;line-height:1.45}
+.rv{font-size:11px;color:#94a3b8}
+.rbadge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:4px;white-space:nowrap;letter-spacing:.03em}
+
+/* CONTACT */
+.contact-wrap{background:#0f172a;padding:64px 56px;text-align:center}
+.ct-ttl{font-family:'Noto Serif KR',serif;font-size:30px;font-weight:700;color:#fff;margin-bottom:8px}
+.ct-sub{font-size:13px;color:#94a3b8;margin-bottom:28px}
+.ct-btns{display:flex;justify-content:center;gap:10px}
+.btn{display:inline-block;font-size:12px;font-weight:600;padding:11px 26px;border-radius:8px;text-decoration:none;transition:all .2s}
+.btn-p{background:#2563eb;color:#fff}
+.btn-p:hover{background:#1d4ed8}
+.btn-s{background:rgba(255,255,255,.07);color:#e2e8f0;border:1px solid rgba(255,255,255,.12)}
+.btn-s:hover{background:rgba(255,255,255,.13)}
+
+footer{background:#0f172a;border-top:1px solid rgba(255,255,255,.06);padding:14px 56px;display:flex;justify-content:space-between;font-size:11px;color:#475569}
+
+@media(max-width:800px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .wrap{padding:0 20px}
+  .hero{grid-template-columns:1fr;padding:80px 0 48px;gap:28px}
+  .profile-col{order:-1}.prof-img{aspect-ratio:1}
+  .skills-grid{grid-template-columns:1fr}
+  .res-item{grid-template-columns:1fr;gap:5px}
+  .detail-grid{grid-template-columns:1fr}
+  .contact-wrap{padding:48px 20px}
+  footer{flex-direction:column;gap:4px;padding:12px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">김<span>미주</span></div>
+  <div class="nav-links">
+    <a href="#timeline">경력·학력</a>
+    <a href="#projects">프로젝트</a>
+    <a href="#skills">기술 스택</a>
+    <a href="#research">연구·수상</a>
+    <a href="#contact">연락처</a>
+  </div>
+</nav>
+
+<div class="wrap">
+<div class="hero">
+  <div>
+    <div class="hero-badge">AI 기획 · 데이터 사이언스 · PM</div>
+    <h1 class="hero-name">김미주</h1>
+    <p class="hero-en">Miju Kim &nbsp;·&nbsp; AI Planner &amp; Data Scientist</p>
+    <p class="hero-quote">"데이터를 분석하는 사람이 아닌, 데이터로 결정하는 사람이 되고 싶습니다."</p>
+    <p class="hero-desc">
+      학부에서 의생명융합공학을 배우며 <strong>"사람의 몸에서 일어나는 일을 숫자로 설명할 수 있다면?"</strong>이라는 질문을 품었습니다. 석사에서는 보건통계연구실과 의과대학 연구원을 함께 오가며 임상 데이터가 실제 정책과 현장에 닿는 과정을 직접 경험했습니다. 지금은 그 경험을 AI 기획으로 확장하고 있습니다.
+    </p>
+    <div class="chips">
+      <span class="chip hi">AX 기획</span><span class="chip hi">AI PM</span><span class="chip hi">데이터 분석</span>
+      <span class="chip">Python · R · SQL · SAS</span><span class="chip">AWS</span>
+      <span class="chip">GAM · Cox Model</span><span class="chip">GIS · QGIS</span>
+      <span class="chip">SQLD · ADSP · OPIc IH</span>
+    </div>
+    <div class="stats-row">
+      <div class="stt"><div class="sn">16.5억</div><div class="sl">AI 사업 기획</div></div>
+      <div class="stt"><div class="sn">1,693</div><div class="sl">설문 분석</div></div>
+      <div class="stt"><div class="sn">98%</div><div class="sl">예측 정확도</div></div>
+      <div class="stt"><div class="sn">200%</div><div class="sl">정책 효과</div></div>
+    </div>
+  </div>
+  <div class="profile-col">
+    <div class="prof-img">
+      <img src="profile.jpg" alt="김미주" onerror="this.style.display='none';this.parentNode.innerHTML='<div style=\'text-align:center;color:#93c5fd;padding:20px\'><div style=\'font-size:56px\'>🙂</div><div style=\'font-size:10px;margin-top:4px\'>profile.jpg 교체</div></div>'">
+    </div>
+    <div class="prof-card">
+      <div class="prow"><span>전공</span><strong>정보융합공학 의생명융합</strong></div>
+      <div class="prow"><span>소속</span><strong>부산대 EduTech Center</strong></div>
+      <div class="prow"><span>자격증</span><strong>SQLD · ADSP</strong></div>
+      <div class="prow"><span>어학</span><strong>OPIc IH (2025.06)</strong></div>
+      <div class="prow"><span>관심 직무</span><strong>AX 기획 · AI PM</strong></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<hr class="div">
+
+<!-- TIMELINE -->
+<div class="wrap">
+<div class="sec" id="timeline">
+  <div class="sec-hd">
+    <span class="sec-num">01</span>
+    <h2 class="sec-ttl">경력 · 학력 타임라인</h2>
+    <span class="sec-sub">2020 — 현재</span>
+  </div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot on"></div>
+      <div class="tl-period">2025.03 — 현재</div>
+      <div class="tl-title">AI 전문 연구원 (PM)</div>
+      <div class="tl-org">부산대학교 EduTech Center</div>
+      <div class="tl-desc">LG U+ EXAONE 기반 AI 캠퍼스 사업 기획 (16.5억 원), Google for Education 파트너십 운영 PM. 아이템 구성·견적 검토·다부서 이해관계자 협의·개발 로드맵 수립.</div>
+      <div class="tl-tags"><span class="tl-tag">AI 사업 기획</span><span class="tl-tag">LG EXAONE</span><span class="tl-tag">Google for Education</span><span class="tl-tag">PM</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot on"></div>
+      <div class="tl-period">2023.03 — 현재</div>
+      <div class="tl-title">데이터 사이언스 석사 과정</div>
+      <div class="tl-org">부산대학교 정보융합공학과 의생명융합전공</div>
+      <div class="tl-desc">초미세먼지·건강 코호트 연구 (30만 명). Time-varying Cox Model, PSM 1:2 매칭, GAM 앙상블 모델링. APCN 국제학회 1저자 발표, 환경부 공식 예측 모델 채택.</div>
+      <div class="tl-tags"><span class="tl-tag">생존분석</span><span class="tl-tag">GAM</span><span class="tl-tag">R</span><span class="tl-tag">SAS</span><span class="tl-tag">Google Earth Engine</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot on"></div>
+      <div class="tl-period">2023.01 — 2024.12</div>
+      <div class="tl-title">의학연구원 (데이터 분석가)</div>
+      <div class="tl-org">부산대학교 의과대학 연구원</div>
+      <div class="tl-desc">부산시 소지역 건강격차 해소사업 분석 총괄. 1,703명 전수조사 패널 DB 구축, DID 분석·A/B 테스트로 대조지역 대비 200% 개선 효과 증명. Python 자동화 파이프라인이 공식 가이드라인으로 채택. 부산시 응급의료 취약지수 분석 결과 부산시 보건정책 기초자료 채택.</div>
+      <div class="tl-tags"><span class="tl-tag">DID 분석</span><span class="tl-tag">A/B Test</span><span class="tl-tag">Python</span><span class="tl-tag">SAS</span><span class="tl-tag">SPSS</span><span class="tl-tag">Tableau</span><span class="tl-tag">QGIS</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2024.03 — 2024.12</div>
+      <div class="tl-title">한국건강형평성학회 총무 간사</div>
+      <div class="tl-org">한국건강형평성학회</div>
+      <div class="tl-desc">홈페이지 UI/UX 기획·제작, 회원 관리 DB 자동화, 메일 연동 자동화 홍보. 정회원 500명 → 1,200명 (140% 증가), 재정 자립도 200% 향상. 학술대회 5회·세미나 6회 총 11회 대규모 행사 총괄 운영.</div>
+      <div class="tl-tags"><span class="tl-tag">DB 자동화</span><span class="tl-tag">UI/UX 기획</span><span class="tl-tag">Figma</span><span class="tl-tag">Python</span><span class="tl-tag">행사 운영</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2023.02 — 2023.06</div>
+      <div class="tl-title">교환학생 — Engineering 전공</div>
+      <div class="tl-org">프랑스 ESME Sudria 공과대학 대학원 과정</div>
+      <div class="tl-desc">웹 해킹, Python, SQL injection 실습. 국제 협업 환경에서 기술 역량 강화.</div>
+      <div class="tl-tags"><span class="tl-tag">Python</span><span class="tl-tag">SQL</span><span class="tl-tag">웹 보안</span><span class="tl-tag">프랑스어</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2023 — 2024</div>
+      <div class="tl-title">뇌병변 장애인 건강모니터링 앱 「기대해」 개발</div>
+      <div class="tl-org">부산뇌병변복지관 협력 · 데이터 엔지니어</div>
+      <div class="tl-desc">ECG·체온·활동량 + 기상 데이터 시계열 병합, AWS 기반 실시간 스트림 파이프라인. Garmin 본사 직접 방문·협업 제안으로 수집 안정성 60% → 90%.</div>
+      <div class="tl-tags"><span class="tl-tag">AWS</span><span class="tl-tag">ECG 신호처리</span><span class="tl-tag">클러스터링</span><span class="tl-tag">Garmin API</span><span class="tl-tag">Figma</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2024.03 — 2024.12</div>
+      <div class="tl-title">멋쟁이사자처럼 개발 동아리 (프론트엔드)</div>
+      <div class="tl-org">대학생 연합 개발 동아리</div>
+      <div class="tl-desc">React 기반 AI 대화 감정일기 앱 프론트엔드 개발. 학부 시절 개발한 표정 기반 감정 분석 알고리즘(CNN, 정확도 85%) 서비스에 통합. GitHub 협업, Figma UI/UX, 해커톤 예선 통과.</div>
+      <div class="tl-tags"><span class="tl-tag">React</span><span class="tl-tag">Figma</span><span class="tl-tag">GitHub</span><span class="tl-tag">CNN</span><span class="tl-tag">해커톤</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2022.06 — 2022.12</div>
+      <div class="tl-title">학생회 홍보부장</div>
+      <div class="tl-org">부산대학교 학생회</div>
+      <div class="tl-desc">학과 공식 인스타그램 채널 개설, 신입생 맞춤형 카드뉴스·학과 소개 영상 제작 (조회수 2,000회+). 5년이 지난 현재까지 공식 홍보 자료로 활용 중.</div>
+      <div class="tl-tags"><span class="tl-tag">SNS 운영</span><span class="tl-tag">콘텐츠 기획</span><span class="tl-tag">영상 제작</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2022 — 2023</div>
+      <div class="tl-title">Computational Omics Lab · shine lab 학부연구생</div>
+      <div class="tl-org">부산대학교</div>
+      <div class="tl-desc">생명 데이터 분석 및 보건통계 연구 기초 역량 형성.</div>
+      <div class="tl-tags"><span class="tl-tag">생명정보학</span><span class="tl-tag">보건통계</span><span class="tl-tag">R</span></div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2020 — 2023</div>
+      <div class="tl-title">학사 졸업</div>
+      <div class="tl-org">부산대학교 의생명융합공학부 데이터사이언스전공</div>
+      <div class="tl-desc">"사람의 몸에서 일어나는 일을 숫자로 설명할 수 있다면?"이라는 질문을 품고 데이터 사이언스를 전공.</div>
+      <div class="tl-tags"><span class="tl-tag">의생명융합</span><span class="tl-tag">데이터 사이언스</span></div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<hr class="div">
+
+<!-- PROJECTS -->
+<div class="wrap">
+<div class="sec" id="projects">
+  <div class="sec-hd">
+    <span class="sec-num">02</span>
+    <h2 class="sec-ttl">주요 프로젝트</h2>
+    <span class="sec-sub">▾ 클릭하면 상세 내용 확인</span>
+  </div>
+
+  <!-- P1: LG U+ -->
+  <div class="proj-card feat">
+    <div class="proj-hd">
+      <div>
+        <div class="proj-idx">01 · 진행 중 · AI 사업 기획</div>
+        <h3 class="proj-ttl">LG U+ EXAONE 기반 AI 캠퍼스 사업 기획</h3>
+        <p class="proj-org">부산대 EduTech Center · AI 전문 연구원 (PM) · 2025.03 — 현재</p>
+      </div>
+      <span class="pbadge pb-bl">진행 중</span>
+    </div>
+    <p class="proj-sum">총 <strong>16.5억 원</strong> 규모 AI 캠퍼스 사업에서 AI 미팅룸·인터뷰 스튜디오·CaaS 플랫폼 등 아이템 구성 담당. 기획서 작성 전 견적서를 직접 검토해 서버 스펙·예산 타당성을 확인하고, 다부서와 협의하며 개발 로드맵 수립 중.</p>
+    <button class="toggle-btn" onclick="toggle(this)">상세 보기 <span class="arr">▾</span></button>
+    <div class="proj-detail">
+      <div class="detail-grid">
+        <div class="dbox">
+          <div class="dbox-ttl">기획 아이템 (5종)</div>
+          <ul>
+            <li>AI 미팅룸 — Logitech RALLY + LG 미디어 송출 결합, STT 기반 회의록 자동 생성, On-Premise 보안 환경 데이터 주권 방안 수립</li>
+            <li>AI 인터뷰 스튜디오 — 학생 비대면 면접 역량 정밀 분석 (표정·시선 처리 AI + EXAONE 답변 논리 구조 분석)</li>
+            <li>CaaS 플랫폼 — 학생 AI 에이전트 개발 마켓 모델 설계, 교수·현업·사용자 피드백 순환 구조 기획</li>
+            <li>AX 혁신 연구실 지원 — 연구 데이터 특화 임베딩·검색 최적화, Sovereign AI 환경 학내 지식베이스 구축</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <div class="dbox-ttl">나의 역할 · 판단 과정</div>
+          <ul>
+            <li>아이템별 견적서 직접 검토 — 학교 서버 스펙 적합성 및 예산 라인 사전 검증</li>
+            <li>정보화본부·기획처 등 다부서 이해관계자 협의, 8월 예산 집행 라인 조율</li>
+            <li>9월 개발 → 1~2월 단계별 마일스톤 로드맵 수립</li>
+            <li>API 토큰 비용 커버리지 방안 논의, On-Premise 보안 환경 설계 방향 결정</li>
+          </ul>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="mbox"><div class="mv">16.5억</div><div class="ml">사업 규모</div></div>
+        <div class="mbox"><div class="mv">5종</div><div class="ml">기획 아이템</div></div>
+        <div class="mbox"><div class="mv">3+</div><div class="ml">협업 부서</div></div>
+      </div>
+      <div class="stacks"><span class="stk">LG EXAONE</span><span class="stk">On-Premise</span><span class="stk">STT</span><span class="stk">Sovereign AI</span><span class="stk">사업 기획 PM</span><span class="stk">이해관계자 협의</span></div>
+    </div>
+  </div>
+
+  <!-- P2: Google -->
+  <div class="proj-card">
+    <div class="proj-hd">
+      <div>
+        <div class="proj-idx">02 · 진행 중 · AI 교육 기획</div>
+        <h3 class="proj-ttl">Google for Education 파트너십 운영 PM</h3>
+        <p class="proj-org">부산대 EduTech Center · 2025.03 — 현재</p>
+      </div>
+      <span class="pbadge pb-gn">파트너십 추진 중</span>
+    </div>
+    <p class="proj-sum">부산대 최초 Google for Education 파트너십 추진. <strong>1,693명 사전 설문</strong>을 직접 기획·분석해 AI 사용(4.56점) 대비 리터러시(3.21점) 간 <strong>1.35점 간극</strong>을 확인, 구글 미팅에서 프롬프트 심화 모듈을 첫 순서로 제안.</p>
+    <button class="toggle-btn" onclick="toggle(this)">상세 보기 <span class="arr">▾</span></button>
+    <div class="proj-detail">
+      <div class="detail-grid">
+        <div class="dbox">
+          <div class="dbox-ttl">설문 주요 발견 (N=1,693)</div>
+          <ul>
+            <li>AI 사용 빈도 4.56/5 vs 리터러시 자가평가 3.21/5 → 1.35점 간극</li>
+            <li>Gemini 경험 96.7%, 심화 활용 35.5% → 64.5%p 격차</li>
+            <li>주요 걱정: 할루시네이션 78%, 사고력 저하 58%</li>
+            <li>교육 목표 1순위: 프롬프트 심화 (38.6%)</li>
+            <li>Sheets·Slides AI 학습 의향 78%+ — 실용 교육 수요</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <div class="dbox-ttl">기획 결과 · 제안 내용</div>
+          <ul>
+            <li>구글 미팅에서 모듈 순서 제안: 프롬프트 심화 → NotebookLM 체험 → Workspace 자동화</li>
+            <li>실습 비중 60~80% 구성, 취업 연계 실습 포함 설계</li>
+            <li>앰버서더 3단계 운영 체계 (엘리어댑터→앰버서더→챔피언) 설계</li>
+            <li>Gemini 커뮤니티 다층 설계: 특강 52.7% + 스터디 28.1% + 운영진 13.4%</li>
+          </ul>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="mbox"><div class="mv">1,693</div><div class="ml">설문 응답자</div></div>
+        <div class="mbox"><div class="mv">1.35점</div><div class="ml">리터러시 간극</div></div>
+        <div class="mbox"><div class="mv">96.7%</div><div class="ml">Gemini 경험률</div></div>
+        <div class="mbox"><div class="mv">16개</div><div class="ml">참여 단과대</div></div>
+      </div>
+      <div class="stacks"><span class="stk">Gemini</span><span class="stk">NotebookLM</span><span class="stk">Google Workspace</span><span class="stk">커리큘럼 설계</span><span class="stk">데이터 분석</span></div>
+    </div>
+  </div>
+
+  <!-- P3: 코호트 -->
+  <div class="proj-card">
+    <div class="proj-hd">
+      <div>
+        <div class="proj-idx">03 · 완료 · 석사 연구 · 국제학회</div>
+        <h3 class="proj-ttl">30만 건 코호트 인과추론 — Time-varying Cox + PSM</h3>
+        <p class="proj-org">부산대 석사 연구 · APCN 국제신장학회 1저자 발표</p>
+      </div>
+      <span class="pbadge pb-or">1저자 발표</span>
+    </div>
+    <p class="proj-sum">기존 표준 모델의 한계(고정 노출 가정)를 극복하기 위해 <strong>Time-varying Cox Model</strong>로 시간에 따라 변하는 노출 특성을 반영. PSM 1:2 매칭으로 혼란 변수를 제거해 PM2.5 단위 증가 시 CKD 환자군 AKI 발생 위험 <strong>HR 1.05배</strong> 상승 증명.</p>
+    <button class="toggle-btn" onclick="toggle(this)">상세 보기 <span class="arr">▾</span></button>
+    <div class="proj-detail">
+      <div class="detail-grid">
+        <div class="dbox">
+          <div class="dbox-ttl">데이터 · 분석 설계</div>
+          <ul>
+            <li>국민건강보험공단 2010~2019년 30만 명 코호트</li>
+            <li>사망·이탈자 중도절단 처리, 1~2년 이동평균 적용한 time-varying exposure 변수 생성</li>
+            <li>표본 손실 최소화를 위한 1:2 성향점수매칭</li>
+            <li>성별·연령·소득 등 혼란 변수 통제, 매칭 후 그룹 간 공변량 균형 확보</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <div class="dbox-ttl">결과 · 의의</div>
+          <ul>
+            <li>HR 1.05 — PM2.5 단위 증가 시 AKI 발생 위험 1.05배 상승 (p&lt;.001)</li>
+            <li>PSM 이후에도 RHR 1.13으로 효과 견고성 확인</li>
+            <li>APCN 아시아태평양신장학회 제1저자 발표</li>
+            <li>코호트 시간 가변적 요인과 혼란 변수를 구분해 순수 인과 효과 증명</li>
+          </ul>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="mbox"><div class="mv">30만명</div><div class="ml">코호트 규모</div></div>
+        <div class="mbox"><div class="mv">HR 1.05</div><div class="ml">위험비</div></div>
+        <div class="mbox"><div class="mv">1저자</div><div class="ml">국제학회</div></div>
+      </div>
+      <div class="stacks"><span class="stk">Time-varying Cox</span><span class="stk">PSM 1:2</span><span class="stk">SAS</span><span class="stk">R</span><span class="stk">국민건강보험공단 DB</span></div>
+    </div>
+  </div>
+
+  <!-- P4: GAM -->
+  <div class="proj-card">
+    <div class="proj-hd">
+      <div>
+        <div class="proj-idx">04 · 완료 · 환경부 채택</div>
+        <h3 class="proj-ttl">위성 데이터 파이프라인 × GAM 앙상블 — 예측 정확도 98%</h3>
+        <p class="proj-org">부산대 석사 연구 · 환경부 기후변화 대응 환경보건센터 공식 채택 · 산학캡스톤 장려상</p>
+      </div>
+      <span class="pbadge pb-or">환경부 공식 채택</span>
+    </div>
+    <p class="proj-sum">기상청 관측소 데이터가 자치구당 1개소로 넓은 지역을 대표하는 한계 발견. Google Earth Engine 위성 데이터로 <strong>1km² 격자 DB</strong>를 직접 구축하고, 30% 결측을 시공간 역추적 알고리즘으로 복원. GAM 앙상블로 <strong>예측 정확도 98%</strong> 달성.</p>
+    <button class="toggle-btn" onclick="toggle(this)">상세 보기 <span class="arr">▾</span></button>
+    <div class="proj-detail">
+      <div class="detail-grid">
+        <div class="dbox">
+          <div class="dbox-ttl">파이프라인 3단계</div>
+          <ul>
+            <li>[01 데이터 수집·정제] Google 위성 기반 1km 격자 DB 추출, 대기 잡음으로 인한 30% 결측치 인접 시점 농도 역추적 보간 알고리즘 적용</li>
+            <li>[02 예측 모델링] SVR, Random Forest, XGBoost 등 트리 기반 3종 모델 학습·검증 세트 분리 (일반화 성능 평가)</li>
+            <li>[03 비선형 보정] 지역별 편차·변수 간 비선형 관계 해결 위해 GAM 앙상블 + Spline 보정 결합</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <div class="dbox-ttl">결과 · 재사용 설계</div>
+          <ul>
+            <li>예측 정확도 98% 달성</li>
+            <li>환경부 기후변화 대응 환경보건센터 공식 예측 파이프라인으로 채택</li>
+            <li>R로 행정동 단위 시계열 시각화, 서울시 계절 관리제 감축 정책 효과 정량 입증</li>
+            <li>구축한 DB를 재사용 가능한 구조로 설계 — 데이터 마트 정합성 검증</li>
+          </ul>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="mbox"><div class="mv">98%</div><div class="ml">예측 정확도</div></div>
+        <div class="mbox"><div class="mv">1km²</div><div class="ml">격자 해상도</div></div>
+        <div class="mbox"><div class="mv">30%</div><div class="ml">결측 복원</div></div>
+      </div>
+      <div class="stacks"><span class="stk">Google Earth Engine</span><span class="stk">GAM 앙상블</span><span class="stk">Spline</span><span class="stk">R</span><span class="stk">Python</span><span class="stk">QGIS</span></div>
+    </div>
+  </div>
+
+  <!-- P5: 건강격차 -->
+  <div class="proj-card">
+    <div class="proj-hd">
+      <div>
+        <div class="proj-idx">05 · 완료 · 정책 채택</div>
+        <h3 class="proj-ttl">부산시 소지역 건강격차 해소사업 — 비정형 데이터로 정책 효과 정량 검증</h3>
+        <p class="proj-org">부산대 의과대학 연구원 · 부산광역시 협력</p>
+      </div>
+      <span class="pbadge pb-gn">공식 가이드라인 채택</span>
+    </div>
+    <p class="proj-sum">3년간 축적된 비정형 데이터와 파편화된 엑셀 파일에서 <strong>1,703명 전수조사 패널 DB</strong>를 구축. DID 분석으로 대조지역 대비 <strong>200% 개선</strong> 증명. Python 자동화 파이프라인이 공식 가이드라인으로 채택됨.</p>
+    <button class="toggle-btn" onclick="toggle(this)">상세 보기 <span class="arr">▾</span></button>
+    <div class="proj-detail">
+      <div class="detail-grid">
+        <div class="dbox">
+          <div class="dbox-ttl">3단계 분석 프로세스</div>
+          <ul>
+            <li>[Stage 1] 원천 데이터 전수조사 — 1,703명 동일 ID 기준 데이터 수집, 주소지 수동 대조 및 수천 장 설문지 교차 검증</li>
+            <li>[Stage 2] Python 파이프라인 자동화 — 변수 코딩, 결측치 전처리, 변수 정의 일괄 자동화, 재현성을 위한 코딩 매뉴얼 수립</li>
+            <li>[Stage 3] 패널 DB & DID 실험 설계 — 환경 변수 통제 완료, Paired t-test, McNemar, DID 분석 완료</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <div class="dbox-ttl">이해관계자 갈등 조율</div>
+          <ul>
+            <li>의료진 (임상 기준) vs 복지사 (정성적 복지 기준) 충돌 발생</li>
+            <li>국내외 유사 사업 선행 연구를 직접 찾아 단기 체감도 개선이 장기 질병 감소를 유도한다는 근거 제시</li>
+            <li>'질환 인지율' 공동 지표 개발 — 단기·장기 성과 지표 분리로 만장일치 합의</li>
+            <li>복잡한 통계 결과를 비전문가에 맞춘 시각화로 설득</li>
+          </ul>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="mbox"><div class="mv">200%</div><div class="ml">개선 효과</div></div>
+        <div class="mbox"><div class="mv">1,703명</div><div class="ml">전수조사</div></div>
+      </div>
+      <div class="stacks"><span class="stk">DID 분석</span><span class="stk">A/B Test</span><span class="stk">Paired t-test</span><span class="stk">McNemar</span><span class="stk">Python</span><span class="stk">SPSS</span><span class="stk">Radar Chart</span></div>
+    </div>
+  </div>
+
+  <!-- P6: 응급의료 -->
+  <div class="proj-card">
+    <div class="proj-hd">
+      <div>
+        <div class="proj-idx">06 · 완료 · 부산시 정책 채택</div>
+        <h3 class="proj-ttl">부산시 응급의료 취약지수 분석 — 보건 정책 기준 수립</h3>
+        <p class="proj-org">부산대 의과대학 연구원 · 부산광역시 총괄</p>
+      </div>
+      <span class="pbadge pb-gn">부산시 정책 채택</span>
+    </div>
+    <p class="proj-sum">부산시 고령화 대비 3대 질환 사망 증가 원인 분석. 20여 개 복합 변수를 통합할 때 발생하는 <strong>다중공선성</strong>과 <strong>블랙박스화</strong> 문제를 해결하기 위해 상관관계 히트맵 + Z-score + Estimate 기반 지수 로직을 직접 설계.</p>
+    <button class="toggle-btn" onclick="toggle(this)">상세 보기 <span class="arr">▾</span></button>
+    <div class="proj-detail">
+      <div class="detail-grid">
+        <div class="dbox">
+          <div class="dbox-ttl">분석 3단계</div>
+          <ul>
+            <li>[Step 1] 상관관계 히트맵 (Correlation Heatmap) — 20여 개 변수 간 중복·상관 구조 시각화로 다중공선성 사전 차단</li>
+            <li>[Step 2] Z-score 스케일 표준화 — 출처 다른 변수들의 단위 차이 제거</li>
+            <li>[Step 3] Estimate 기반 취약지수 설계 — 지역별 변수값/SE²로 통계 신뢰도 반영한 지수 로직 직접 개발</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <div class="dbox-ttl">결과 · 팀 이견 조율</div>
+          <ul>
+            <li>질환별 다중 고위험 지역 탐지, 부산시 보건정책 기초 자료로 채택</li>
+            <li>고위험군 맞춤형 응급의료 자원 배분 모델 제안</li>
+            <li>QGIS + Tableau 공간 시각화 — 비전문가(정책 담당자) 즉시 활용 가능한 보고서</li>
+            <li>샘플 데이터 기반으로 팀 이견 먼저 조율 후 전체 분석 진행</li>
+          </ul>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="mbox"><div class="mv">20+</div><div class="ml">복합 변수</div></div>
+        <div class="mbox"><div class="mv">7대</div><div class="ml">광역시 분석</div></div>
+      </div>
+      <div class="stacks"><span class="stk">상관관계 히트맵</span><span class="stk">Z-score</span><span class="stk">QGIS</span><span class="stk">Tableau</span><span class="stk">Python</span><span class="stk">이종데이터 통합</span></div>
+    </div>
+  </div>
+
+  <!-- P7: 기대해 -->
+  <div class="proj-card">
+    <div class="proj-hd">
+      <div>
+        <div class="proj-idx">07 · 완료 · 데이터 엔지니어링</div>
+        <h3 class="proj-ttl">뇌병변 장애인 실시간 건강모니터링 앱 「기대해」</h3>
+        <p class="proj-org">부산뇌병변복지관 협력 · 데이터 엔지니어 · 5인 팀</p>
+      </div>
+      <span class="pbadge pb-pu">AWS 구축 완료</span>
+    </div>
+    <p class="proj-sum">폭염·한파 기후재난 시 혼자 있는 뇌병변 장애인의 이상 징후를 실시간 감지. 반복되는 센서 이탈 문제 해결을 위해 <strong>Garmin 본사에 직접 방문·협업 제안</strong>, 수집 안정성 <strong>60% → 90%</strong> 개선.</p>
+    <button class="toggle-btn" onclick="toggle(this)">상세 보기 <span class="arr">▾</span></button>
+    <div class="proj-detail">
+      <div class="detail-grid">
+        <div class="dbox">
+          <div class="dbox-ttl">2가지 핵심 문제 해결</div>
+          <ul>
+            <li>[Problem 1: Hardware] 패치 센서 이탈로 수집 안정성 60% → 이동평균 보정 + Garmin 본사 직접 방문 협업 제안 → 90%로 개선</li>
+            <li>[Problem 2: False Alarm] 대상자 40명별 신체 패턴 편차 극심 → 단일 임계치 불가 → 비지도 클러스터링으로 패턴 군집화 + 개인별 베이스라인 룰 필터링으로 오탐 대폭 감소</li>
+            <li>기상 데이터(폭염·한파)와 생체 데이터(ECG·체온·활동량) 시계열 병합</li>
+            <li>AWS 기반 1분 단위 실시간 데이터 연동, 앱 UI/UX Figma 기획 참여</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <div class="dbox-ttl">기술 구성</div>
+          <ul>
+            <li>Wearable Sensor → AWS Cloud → 발생 위험 알림 실시간 파이프라인</li>
+            <li>비지도 학습 클러스터링 — 패턴 군집화 및 이상 후보 탐지</li>
+            <li>개인별 베이스라인 룰 — 개인차 보정, 획일적 기준 오탐 제거</li>
+            <li>이동평균 기반 결측 구간 보정 — 데이터 끊김 시 신호 연속성 확보</li>
+          </ul>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="mbox"><div class="mv">60→90%</div><div class="ml">수집 안정성</div></div>
+        <div class="mbox"><div class="mv">40명</div><div class="ml">실 적용 대상</div></div>
+        <div class="mbox"><div class="mv">1분</div><div class="ml">갱신 주기</div></div>
+      </div>
+      <div class="stacks"><span class="stk">AWS</span><span class="stk">ECG 신호처리</span><span class="stk">비지도 클러스터링</span><span class="stk">Garmin API</span><span class="stk">Python</span><span class="stk">Figma</span></div>
+    </div>
+  </div>
+
+  <!-- P8: 학회 -->
+  <div class="proj-card">
+    <div class="proj-hd">
+      <div>
+        <div class="proj-idx">08 · 완료 · 운영 자동화</div>
+        <h3 class="proj-ttl">한국건강형평성학회 홈페이지 구축 및 운영 자동화</h3>
+        <p class="proj-org">한국건강형평성학회 총무 간사</p>
+      </div>
+      <span class="pbadge pb-gy">회원 140% 증가</span>
+    </div>
+    <p class="proj-sum">엑셀 수기 관리로 인한 데이터 누락·비효율 문제를 해결하기 위해 홈페이지 UI 직접 기획·제작, 정밀 DB 구축·메일 자동화 홍보 연동. 정회원 <strong>500명 → 1,200명</strong>, 재정 자립도 <strong>200% 향상</strong>.</p>
+    <button class="toggle-btn" onclick="toggle(this)">상세 보기 <span class="arr">▾</span></button>
+    <div class="proj-detail">
+      <div class="detail-grid">
+        <div class="dbox">
+          <div class="dbox-ttl">해결 흐름</div>
+          <ul>
+            <li>자체 제작 웹 UI 기획 → 정밀 DB 구축·관리 → 메일 연동 자동화 홍보 → 표준화된 행사·회계 운영</li>
+            <li>11회 대규모 행사 룰 세팅 (Rule-setting)</li>
+            <li>외부 솔루션 예산 부담 → 자체 제작으로 해결</li>
+            <li>회계·예산 집행 엑셀 누락 문제 → 표준화 프로세스 구축</li>
+          </ul>
+        </div>
+        <div class="dbox">
+          <div class="dbox-ttl">결과</div>
+          <ul>
+            <li>정회원 500명 → 1,200명 (140% 증가)</li>
+            <li>재정 자립도 200% 향상</li>
+            <li>학술대회 5회·세미나 6회 총 11회 총괄 운영</li>
+            <li>리소스 부족해도 스스로 배우고 파이프라인 구축해 자동화 환경 구성</li>
+          </ul>
+        </div>
+      </div>
+      <div class="metrics-row">
+        <div class="mbox"><div class="mv">140%</div><div class="ml">회원 증가</div></div>
+        <div class="mbox"><div class="mv">200%</div><div class="ml">재정 자립도</div></div>
+        <div class="mbox"><div class="mv">11회</div><div class="ml">행사 총괄</div></div>
+      </div>
+      <div class="stacks"><span class="stk">Figma</span><span class="stk">Python</span><span class="stk">DB 자동화</span><span class="stk">메일 자동화</span><span class="stk">웹 개발</span><span class="stk">회계 표준화</span></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<hr class="div">
+
+<!-- SKILLS -->
+<div class="wrap">
+<div class="sec" id="skills">
+  <div class="sec-hd">
+    <span class="sec-num">03</span>
+    <h2 class="sec-ttl">기술 스택</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="sk-card">
+      <div class="sk-ttl">프로그래밍</div>
+      <div class="sk-item"><div><div>Python</div><div class="sk-note">데이터 분석·자동화 파이프라인·AWS</div></div><div class="sk-bar"><div class="sk-fill" style="width:92%"></div></div></div>
+      <div class="sk-item"><div><div>R</div><div class="sk-note">통계 모델링·시계열 시각화·GAM</div></div><div class="sk-bar"><div class="sk-fill" style="width:88%"></div></div></div>
+      <div class="sk-item"><div><div>SQL · SQLD</div><div class="sk-note">데이터 추출·쿼리 최적화</div></div><div class="sk-bar"><div class="sk-fill" style="width:85%"></div></div></div>
+      <div class="sk-item"><div><div>SAS</div><div class="sk-note">코호트 분석·보건통계 실무</div></div><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div></div>
+      <div class="sk-item"><div><div>React · JavaScript</div><div class="sk-note">프론트엔드 개발 (개발 동아리)</div></div><div class="sk-bar"><div class="sk-fill" style="width:60%"></div></div></div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-ttl">분석 방법론</div>
+      <div class="sk-item"><div><div>GAM · Spline 앙상블</div><div class="sk-note">비선형 모델링, 환경부 채택</div></div><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div></div>
+      <div class="sk-item"><div><div>Time-varying Cox · PSM</div><div class="sk-note">생존분석·인과추론, 국제학회</div></div><div class="sk-bar"><div class="sk-fill" style="width:88%"></div></div></div>
+      <div class="sk-item"><div><div>DID · A/B Test</div><div class="sk-note">정책 효과 검증, 200% 개선 증명</div></div><div class="sk-bar"><div class="sk-fill" style="width:87%"></div></div></div>
+      <div class="sk-item"><div><div>비지도 클러스터링</div><div class="sk-note">개인화 이상 징후 탐지</div></div><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div></div>
+      <div class="sk-item"><div><div>SVR · Random Forest · XGBoost</div><div class="sk-note">트리 기반 앙상블 모델링</div></div><div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div></div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-ttl">플랫폼 · 도구</div>
+      <div class="sk-item"><div><div>AWS (S3·IoT·Lambda)</div><div class="sk-note">실시간 스트림 파이프라인 구축</div></div><div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div></div>
+      <div class="sk-item"><div><div>Google Earth Engine</div><div class="sk-note">위성 DB 구축, 1km² 격자</div></div><div class="sk-bar"><div class="sk-fill" style="width:80%"></div></div></div>
+      <div class="sk-item"><div><div>QGIS · Tableau</div><div class="sk-note">공간 시각화·대시보드</div></div><div class="sk-bar"><div class="sk-fill" style="width:78%"></div></div></div>
+      <div class="sk-item"><div><div>Gemini · Claude · LLM</div><div class="sk-note">AI 기획·프롬프트 설계</div></div><div class="sk-bar"><div class="sk-fill" style="width:85%"></div></div></div>
+      <div class="sk-item"><div><div>Figma · GitHub</div><div class="sk-note">UI/UX 기획·협업</div></div><div class="sk-bar"><div class="sk-fill" style="width:72%"></div></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<hr class="div">
+
+<!-- RESEARCH -->
+<div class="wrap">
+<div class="sec" id="research">
+  <div class="sec-hd">
+    <span class="sec-num">04</span>
+    <h2 class="sec-ttl">연구 · 수상 · 자격</h2>
+  </div>
+  <div class="res-list">
+    <div class="res-item">
+      <div class="ry">2025</div>
+      <div><div class="rt">초미세먼지(PM2.5) 노출에 따른 만성 신장질환자의 급성 신손상 발생 위험 — HR 1.05 (p&lt;.001)</div><div class="rv">APCN 아시아태평양신장학회 · 1저자 발표</div></div>
+      <span class="rbadge pb-or">1저자</span>
+    </div>
+    <div class="res-item">
+      <div class="ry">2025</div>
+      <div><div class="rt">GAM 앙상블 기반 초미세먼지 예측 모델 — 정확도 98%, 환경부 공식 채택</div><div class="rv">산학캡스톤디자인 장려상 · 환경부 기후변화 대응 환경보건센터</div></div>
+      <span class="rbadge pb-or">환경부 채택</span>
+    </div>
+    <div class="res-item">
+      <div class="ry">2025</div>
+      <div><div class="rt">OPIc IH (OPIC-ACTFL 2H9077319553)</div><div class="rv">2025.06.29</div></div>
+      <span class="rbadge pb-gn">취득</span>
+    </div>
+    <div class="res-item">
+      <div class="ry">2024</div>
+      <div><div class="rt">부산시 응급의료 취약지수 분석 — 부산시 보건정책 기초자료 채택</div><div class="rv">부산시 보건정책 공식 채택</div></div>
+      <span class="rbadge pb-gn">정책 채택</span>
+    </div>
+    <div class="res-item">
+      <div class="ry">2024</div>
+      <div><div class="rt">ADSP (데이터 분석 준전문가, ADSP-04301737)</div><div class="rv">2024.11.03 · 한국데이터산업진흥원</div></div>
+      <span class="rbadge pb-gn">취득</span>
+    </div>
+    <div class="res-item">
+      <div class="ry">2024</div>
+      <div><div class="rt">BCI 기반 뇌파 신호처리 — FFT 필터링으로 SNR 128% 개선, 반응속도 0.3초 달성</div><div class="rv">뭐든지 해봐 공모전 우수상</div></div>
+      <span class="rbadge pb-pu">우수상</span>
+    </div>
+    <div class="res-item">
+      <div class="ry">2024</div>
+      <div><div class="rt">난임 치료 자동 호르몬 주사 시스템 기획 — 정밀 투약 알고리즘 설계</div><div class="rv">바이오 헬스 창업 아이디어 공모전 장려상</div></div>
+      <span class="rbadge pb-pu">장려상</span>
+    </div>
+    <div class="res-item">
+      <div class="ry">2024</div>
+      <div><div class="rt">SQLD (SQL 개발자, SQLD-053000233)</div><div class="rv">2024.06.21 · 한국데이터산업진흥원</div></div>
+      <span class="rbadge pb-gn">취득</span>
+    </div>
+    <div class="res-item">
+      <div class="ry">2023</div>
+      <div><div class="rt">서울시 식습관·비만율 인과 분석 — Spatial Lag Model, Fixed Effect Panel, p&lt;0.01</div><div class="rv">서울시 빅데이터 공모전 · 최종 1위</div></div>
+      <span class="rbadge pb-bl">1위</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="contact-wrap" id="contact">
+  <h2 class="ct-ttl">함께 일해요.</h2>
+  <p class="ct-sub">AI 기획 · 데이터 사이언스 · PM 관련 문의를 환영합니다.</p>
+  <div class="ct-btns">
+    <a class="btn btn-p" href="mailto:your@email.com">이메일 보내기</a>
+    <a class="btn btn-s" href="https://github.com/yourid" target="_blank">GitHub</a>
+    <a class="btn btn-s" href="#">LinkedIn</a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 김미주 · AI Planner &amp; Data Scientist</span>
+  <span>Pusan National University · EduTech Center</span>
+</footer>
+
+<script>
+function toggle(btn) {
+  const detail = btn.nextElementSibling;
+  const isOpen = detail.classList.contains('open');
+  detail.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  btn.childNodes[0].textContent = isOpen ? '상세 보기 ' : '접기 ';
+}
+</script>
+</body>
+</html>
